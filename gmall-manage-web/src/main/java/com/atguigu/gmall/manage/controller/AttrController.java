@@ -28,11 +28,11 @@ public class AttrController {
     }
 
 
-        /**?=61
-         * 显示信息*
-         * @param catalog3Id
-         * @return
-         */
+    /**?=61
+     * 显示信息*
+     * @param catalog3Id
+     * @return
+     */
     @RequestMapping("attrInfoList")
     @ResponseBody
     public List<PmsBaseAttrInfo> attrInfoList(String catalog3Id){
@@ -51,7 +51,7 @@ public class AttrController {
     @RequestMapping("saveAttrInfo")
     @ResponseBody
     public String saveAttrInfo(@RequestBody PmsBaseAttrInfo pmsBaseAttrInfo){
-            attrService.saveAttrInfo(pmsBaseAttrInfo);
+        attrService.saveAttrInfo(pmsBaseAttrInfo);
         return "success";
     }
 

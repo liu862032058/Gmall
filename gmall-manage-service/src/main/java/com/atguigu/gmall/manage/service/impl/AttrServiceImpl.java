@@ -25,24 +25,17 @@ public class AttrServiceImpl implements AttrService {
 
 
 
-//    显示信息
+    //    显示信息
     @Override
     public List<PmsBaseAttrInfo> attrInfoList(String catalog3Id) {
-
 //       创建基本属性 对象
         PmsBaseAttrInfo pmsBaseAttrInfo =new PmsBaseAttrInfo();
 //        给基本属性赋值
         pmsBaseAttrInfo.setCatalog3Id(catalog3Id);
-
-
 //        根据基本属性赋值的来查询 对象属性信息（list集合）
         List<PmsBaseAttrInfo> pmsBaseAttrInfoList = pmsBaseAttrInfoMapper.select(pmsBaseAttrInfo);
-
-
-
         //        循环list集合
         for (PmsBaseAttrInfo baseAttrInfo :pmsBaseAttrInfoList){
-            
 //            获取属性的id
             String id = baseAttrInfo.getId();
 //            创建对应的属性 的值 的对象（ 基本属性：内存  对应的值：4G ，8G）
@@ -78,37 +71,27 @@ public class AttrServiceImpl implements AttrService {
     }
 
     public void saveAttrInfo( PmsBaseAttrInfo pmsBaseAttrInfo){
-        String attrId="";
-        if(StringUtils.isNotBlank(pmsBaseAttrInfo.getId())){
-//            修改操作
-            attrId = pmsBaseAttrInfo.getAttrName();
+//        保存和修改写在同一个功能里
+//       有主键则为修改，没有主键为保存
+        String id =pmsBaseAttrInfo.getId();
 
-            Example e =new Example(PmsBaseAttrInfo.class);
-
-            e.createCriteria().andEqualTo("id",pmsBaseAttrInfo.getId());
-
-            pmsBaseAttrInfoMapper.updateByExampleSelective(pmsBaseAttrInfo,e);
-
-            PmsBaseAttrValue pmsBaseAttrValue =new PmsBaseAttrValue();
-            pmsBaseAttrValue.setAttrId(pmsBaseAttrInfo.getId());
-            pmsBaseAttrValueMapper.delete(pmsBaseAttrValue);
-
-
-        }else{
-
-//            保存
-
+        if(StringUtils.isNotBlank(id)){
             pmsBaseAttrInfoMapper.insertSelective(pmsBaseAttrInfo);
-            attrId=pmsBaseAttrInfo.getId();
+        }else {
+            pmsBaseAttrInfoMapper.updateByExampleSelective(null,null);
+            PmsBaseAttrValue pmsBaseAttrValue =new PmsBaseAttrValue();
+            pmsBaseAttrValue.setId(id);
+            pmsBaseAttrValueMapper.delete(pmsBaseAttrValue);
         }
 
-        if(StringUtils.isNoneBlank(attrId)){
-            List<PmsBaseAttrValue> attrValueList =pmsBaseAttrInfo.getAttrValueList();
-
-            for(PmsBaseAttrValue pmsBaseAttrValue :attrValueList){
-                pmsBaseAttrValue.setAttrId(attrId);
-                pmsBaseAttrValueMapper.insertSelective(pmsBaseAttrValue);
-            }
+        String attrId = pmsBaseAttrInfo.getId();
+        List<PmsBaseAttrValue> attrValueList = pmsBaseAttrInfo.getAttrValueList();
+        for (PmsBaseAttrValue pmsBaseAttrValue : attrValueList) {
+            pmsBaseAttrValue.setAttrId(attrId);
+            pmsBaseAttrValueMapper.insertSelective(pmsBaseAttrValue);
         }
+
+
     }
+
 }

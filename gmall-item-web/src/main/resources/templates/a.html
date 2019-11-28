@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css" >
+        .red{
+            width:50px;
+            height:50px;
+            background-color:red;
+        }
+        .green{
+            width:50px;
+            height:50px;
+            background-color:green;
+        }
+
+    </style>
+</head>
+<body>
+     取值：
+     <input value = "11111" type="text"  th:value="${hello}"/><br />
+    <p th:text="${hello}">段落</p><br />
+     循环：
+     <input type="text" th:each="atr:${list}" th:value="${atr}"/>
+     <div th:each="atr:${list}" >
+        <input th:value="${atr}"  type="text">
+    </div>
+
+选择
+<input value="1223113" type="text" th:if="${1==1}" /><br />
+<input value="11111111" type="text" th:checked="${1==1}" /><br />
+
+<div th:class="(${1==2})?'red':'green'"></div>
+
+js:
+<a th:href="'javascript:a(\''+${a}+'\')'">点我</a>
+
+<script type="text/javascript" language="JavaScript">
+    function a(v) {
+        alert(v);
+
+    }
+
+</script>
+
+</body>
+
+
+
+</html>
