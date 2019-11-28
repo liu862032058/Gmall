@@ -4,6 +4,7 @@ import com.atguigu.gmall.bean.PmsBaseAttrInfo;
 import com.atguigu.gmall.bean.PmsProductInfo;
 
 import java.util.List;
+import java.util.Set;
 
 public interface AttrService {
     void saveAttrInfo(PmsBaseAttrInfo pmsBaseAttrInfo);
@@ -11,5 +12,8 @@ public interface AttrService {
     List<PmsBaseAttrInfo> attrInfoList(String catalog3Id);
 
     PmsBaseAttrInfo getAttrValueList(String attrId);
+
+    List<PmsBaseAttrInfo> search(Set<String> valueIdSet);
+
 }
 

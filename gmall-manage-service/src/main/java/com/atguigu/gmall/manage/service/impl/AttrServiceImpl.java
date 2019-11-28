@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class AttrServiceImpl implements AttrService {
@@ -70,6 +71,8 @@ public class AttrServiceImpl implements AttrService {
         return pmsBaseAttrInfo1;
     }
 
+
+
     public void saveAttrInfo( PmsBaseAttrInfo pmsBaseAttrInfo){
 //        保存和修改写在同一个功能里
 //       有主键则为修改，没有主键为保存
@@ -94,4 +97,15 @@ public class AttrServiceImpl implements AttrService {
 
     }
 
+
+    @Override
+    public List<PmsBaseAttrInfo> search(Set<String> valueIdSet) {
+
+
+
+
+
+
+        return null;
+    }
 }

@@ -10,4 +10,8 @@ public interface SkuService {
     PmsSkuInfo item(String skuId);
 
     List<PmsSkuInfo> skuSaleAttrValueListBySpu(String spuId);
+
+    List<PmsSkuInfo> getSkuForSearch();
+
+
 }

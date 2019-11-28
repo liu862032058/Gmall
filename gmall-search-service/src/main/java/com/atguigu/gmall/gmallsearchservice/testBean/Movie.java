@@ -1,12 +1,9 @@
-package com.atguigu.gmall.bean;
-
-import java.math.BigDecimal;
+package com.atguigu.gmall.gmallsearchservice.testBean;
 
 public class Movie {
 
     private String id;
     private String name;
-    private BigDecimal doubanScore;
 
     public String getId() {
         return id;
@@ -22,13 +19,5 @@ public class Movie {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public BigDecimal getDoubanScore() {
-        return doubanScore;
-    }
-
-    public void setDoubanScore(BigDecimal doubanScore) {
-        this.doubanScore = doubanScore;
     }
 }
